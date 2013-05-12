@@ -4,6 +4,7 @@ package com.dottydingo.tracelog;
 import java.util.Set;
 
 /**
+ * Interface for managing traces
  */
 public interface TraceManager<E>
 {
@@ -53,5 +54,11 @@ public interface TraceManager<E>
 	 */
 	public Set<String> getTracePackages();
 
+
+    /**
+     * Check if the supplied logger is being traced
+     * @param logger The logger
+     * @return true if a trace is active that covers the supplied logger, false otherwise
+     */
 	public boolean inTrace(String logger);
 }

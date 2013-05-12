@@ -8,11 +8,19 @@ import ch.qos.logback.core.spi.FilterReply;
 import org.slf4j.LoggerFactory;
 
 /**
+ * A Filter used on standard appenders to prevent logging events that would not normally be sent to an appender from
+ * being appended during a trace.
  */
 public class LoggerLevelFilter extends Filter<ILoggingEvent>
 {
     private LoggerContext loggerFactory = (LoggerContext) LoggerFactory.getILoggerFactory();
 
+    /**
+     * Checks the log level of the event against the effective log level of the Logger referenced in the event.
+     * @param event the event
+     * @return Returns "NEUTRAL" if the event level is greater than or equal to the loggers effective log level, "DENY"
+     * otherwise.
+     */
     @Override
     public FilterReply decide(ILoggingEvent event)
     {

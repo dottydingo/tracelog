@@ -12,16 +12,25 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 
 /**
+ * A TurboFilter that will force the logging event to be processed if a trace is in progress and the logger is
+ * one of the packages being traced.
  */
 public class TraceTurboFilter extends TurboFilter
 {
 	private TraceManager traceManager;
 
+    /**
+     * Set the trace manager
+     * @param traceManager the trace manager
+     */
     public void setTraceManager(TraceManager traceManager)
     {
         this.traceManager = traceManager;
     }
 
+    /**
+     * Initialize and add this turbo filter to the loggerFactory.
+     */
     @Override
 	public void start()
 	{
@@ -31,6 +40,16 @@ public class TraceTurboFilter extends TurboFilter
         super.start();
 	}
 
+    /**
+     * Checks to see if the current event should be logged based on if a relevant trace is active (or it would be logged anyway)
+     * @param marker the marker
+     * @param logger the logger
+     * @param level the level
+     * @param format the format
+     * @param params the parameters
+     * @param t the throwable
+     * @return "ACCEPT if a relevant trace is active, "NEUTRAL" otherwise.
+     */
 	@Override
 	public FilterReply decide(Marker marker, Logger logger, Level level, String format, Object[] params, Throwable t)
 	{

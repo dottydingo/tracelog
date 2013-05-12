@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * A Trace that collects log events in a cyclic buffer and writes them to a file when the trace is closed.
  */
 public class FileTrace implements Trace<ILoggingEvent>
 {
@@ -20,6 +21,12 @@ public class FileTrace implements Trace<ILoggingEvent>
     private PatternLayout layout = new PatternLayout();
     private File file;
 
+    /**
+     * Create a new trace using the supplied parameters. The specified file will be written to the base directory.
+     * Care should be taken to validate the file name if this can be specified from a request.
+     * @param configuration The configuration
+     * @param fileName The name of the trace file.
+     */
     public FileTrace(FileConfiguration configuration, String fileName)
     {
 
@@ -49,6 +56,10 @@ public class FileTrace implements Trace<ILoggingEvent>
     }
 
 
+    /**
+     * Add the supplied event to the buffer
+     * @param event the event
+     */
     @Override
     public void addEvent(ILoggingEvent event)
     {
@@ -56,6 +67,10 @@ public class FileTrace implements Trace<ILoggingEvent>
         buffer.add(event);
     }
 
+    /**
+     * Close the trace and write the file
+     * @throws Exception if an error occurs
+     */
     @Override
     public void close() throws Exception
     {

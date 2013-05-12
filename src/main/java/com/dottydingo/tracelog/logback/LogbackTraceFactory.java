@@ -6,22 +6,35 @@ import com.dottydingo.tracelog.TraceFactory;
 import com.dottydingo.tracelog.TraceType;
 
 /**
+ * A Logback specific trace factory. Applies the configured trace configurations to the newly created Trace
+ * instances.
  */
 public class LogbackTraceFactory implements TraceFactory<ILoggingEvent>
 {
 	private EmailConfiguration emailConfiguration;
 	private FileConfiguration fileConfiguration;
 
+    /**
+     * Set the email configuration to use on each Email Trace created.
+     * @param emailConfiguration The email configuration.
+     */
 	public void setEmailConfiguration(EmailConfiguration emailConfiguration)
 	{
 		this.emailConfiguration = emailConfiguration;
 	}
 
+    /**
+     * Set the file configuration to use on each File Trace created.
+     * @param fileConfiguration The file configuration.
+     */
 	public void setFileConfiguration(FileConfiguration fileConfiguration)
 	{
 		this.fileConfiguration = fileConfiguration;
 	}
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public Trace<ILoggingEvent> createTrace(TraceType traceType, String... args)
 	{

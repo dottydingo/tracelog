@@ -4,7 +4,6 @@ import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Context;
 import ch.qos.logback.core.helpers.CyclicBuffer;
-import ch.qos.logback.core.util.ContentTypeUtil;
 import com.dottydingo.tracelog.Trace;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +16,8 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
+ * A Trace that collects log events in a cyclic buffer and sends an email containing the buffered
+ * events when the trace is closed.
  */
 public class EmailTrace implements Trace<ILoggingEvent>
 {
@@ -24,6 +25,11 @@ public class EmailTrace implements Trace<ILoggingEvent>
     private MimeMessage mimeMsg;
     private PatternLayout layout = new PatternLayout();
 
+    /**
+     * Create a Trace using the supplied parameters
+     * @param configuration The configuration
+     * @param toAddress the email address to send the mail to
+     */
     public EmailTrace(EmailConfiguration configuration, String toAddress)
     {
 
@@ -46,7 +52,10 @@ public class EmailTrace implements Trace<ILoggingEvent>
         }
     }
 
-
+    /**
+     * Add the supplied event to the buffer
+     * @param event the event
+     */
     @Override
     public void addEvent(ILoggingEvent event)
     {
@@ -54,6 +63,10 @@ public class EmailTrace implements Trace<ILoggingEvent>
         buffer.add(event);
     }
 
+    /**
+     * Close the trace and send the email
+     * @throws Exception if an error occurs
+     */
     @Override
     public void close() throws Exception
     {
@@ -62,16 +75,7 @@ public class EmailTrace implements Trace<ILoggingEvent>
 
         StringBuilder sb = new StringBuilder();
 
-        String header = layout.getFileHeader();
-        if (header != null)
-        {
-            sb.append(header);
-        }
-        String presentationHeader = layout.getPresentationHeader();
-        if (presentationHeader != null)
-        {
-            sb.append(presentationHeader);
-        }
+
         int len = buffer.length();
         for (int i = 0; i < len; i++)
         {
@@ -79,27 +83,7 @@ public class EmailTrace implements Trace<ILoggingEvent>
             sb.append(layout.doLayout(event));
         }
 
-        String presentationFooter = layout.getPresentationFooter();
-        if (presentationFooter != null)
-        {
-            sb.append(presentationFooter);
-        }
-        String footer = layout.getFileFooter();
-        if (footer != null)
-        {
-            sb.append(footer);
-        }
-
-        String contentType = layout.getContentType();
-        if (ContentTypeUtil.isTextual(contentType))
-        {
-            part.setText(sb.toString(), "UTF-8", ContentTypeUtil
-                    .getSubType(contentType));
-        }
-        else
-        {
-            part.setContent(sb.toString(), layout.getContentType());
-        }
+        part.setText(sb.toString(), "UTF-8", "plain");
 
         Multipart mp = new MimeMultipart();
         mp.addBodyPart(part);
