@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog;
+package com.dottydingo.service.tracelog;
 
 /**
  * Interface for an active trace. Events are specific to the logging library being used.

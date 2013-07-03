@@ -1,10 +1,10 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import com.dottydingo.tracelog.Trace;
-import com.dottydingo.tracelog.TraceManager;
+import com.dottydingo.service.tracelog.Trace;
+import com.dottydingo.service.tracelog.TraceManager;
 import org.slf4j.LoggerFactory;
 
 

@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog;
+package com.dottydingo.service.tracelog;
 
 /**
  * A factory for creating instances of a Trace.

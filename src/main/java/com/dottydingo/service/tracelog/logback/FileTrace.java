@@ -1,10 +1,10 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Context;
 import ch.qos.logback.core.helpers.CyclicBuffer;
-import com.dottydingo.tracelog.Trace;
+import com.dottydingo.service.tracelog.Trace;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;

@@ -6,7 +6,7 @@ To use add this maven dependency:
 
 ```xml
 <dependency>
-    <groupId>com.dottydingo.tracelog</groupId>
+    <groupId>com.dottydingo.service.tracelog</groupId>
     <artifactId>tracelog</artifactId>
     <version>{current_version}</version>
 </dependency>
@@ -23,7 +23,7 @@ To set up in Spring do the following:
 
 ```xml
 <!-- create the trace manager and define the top level packages (loggers) that will be traced -->
-<bean id="traceManager" class="com.dottydingo.tracelog.DefaultTraceManager">
+<bean id="traceManager" class="com.dottydingo.service.tracelog.DefaultTraceManager">
     <property name="tracePackages">
         <set>
             <value>com.foo</value>
@@ -32,17 +32,17 @@ To set up in Spring do the following:
 </bean>
 
 <!-- install the turbo filter -->
-<bean class="com.dottydingo.tracelog.logback.TraceTurboFilter" init-method="start">
+<bean class="com.dottydingo.service.tracelog.logback.TraceTurboFilter" init-method="start">
     <property name="traceManager" ref="traceManager"/>
 </bean>
 
 <!-- install the trace appender on the packages specified in the trace manager -->
-<bean class="com.dottydingo.tracelog.logback.TraceAppender" init-method="init">
+<bean class="com.dottydingo.service.tracelog.logback.TraceAppender" init-method="init">
     <property name="traceManager" ref="traceManager"/>
 </bean>
 
 <!-- the configuration for email traces  -->
-<bean id="emailConfiguration" class="com.dottydingo.tracelog.logback.EmailConfiguration">
+<bean id="emailConfiguration" class="com.dottydingo.service.tracelog.logback.EmailConfiguration">
     <property name="bufferSize" value="5000"/>
     <property name="subject" value="Service Trace"/>
     <property name="from" value="myservice@somedomain.com"/>
@@ -52,14 +52,14 @@ To set up in Spring do the following:
 </bean>
 
 <!-- the configuration for file traces -->
-<bean id="fileConfiguration" class="com.dottydingo.tracelog.logback.FileConfiguration">
+<bean id="fileConfiguration" class="com.dottydingo.service.tracelog.logback.FileConfiguration">
     <property name="pattern" value="%d{HH:mm:ss.SSS} %logger{5}: %message%n"/>
     <property name="baseDirectory" value="/var/log/trace/"/>
     <property name="bufferSize" value="5000"/>
 </bean>
 
 <!-- the factory for creating trace instances -->
-<bean id="traceFactory" class="com.dottydingo.tracelog.logback.LogbackTraceFactory">
+<bean id="traceFactory" class="com.dottydingo.service.tracelog.logback.LogbackTraceFactory">
     <property name="emailConfiguration" ref="emailConfiguration"/>
     <property name="fileConfiguration" ref="fileConfiguration"/>
 </bean>
@@ -77,7 +77,7 @@ to other appenders when they would not normally be output:
     Only log entries that match the configured logger level (so we don't leak to other appenders when a trace
     is active. 
     -->
-    <filter class="com.dottydingo.tracelog.logback.LoggerLevelFilter"/>
+    <filter class="com.dottydingo.service.tracelog.logback.LoggerLevelFilter"/>
 </appender>
 ```
 

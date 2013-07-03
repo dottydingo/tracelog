@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory;
  */
 public class LoggerLevelFilter extends Filter<ILoggingEvent>
 {
-    private LoggerContext loggerFactory = (LoggerContext) LoggerFactory.getILoggerFactory();
-
     /**
      * Checks the log level of the event against the effective log level of the Logger referenced in the event.
      * @param event the event
@@ -24,6 +22,7 @@ public class LoggerLevelFilter extends Filter<ILoggingEvent>
     @Override
     public FilterReply decide(ILoggingEvent event)
     {
+        LoggerContext loggerFactory = (LoggerContext) LoggerFactory.getILoggerFactory();
         Logger logger = loggerFactory.getLogger(event.getLoggerName());
         if(event.getLevel().isGreaterOrEqual(logger.getEffectiveLevel()))
             return FilterReply.NEUTRAL;

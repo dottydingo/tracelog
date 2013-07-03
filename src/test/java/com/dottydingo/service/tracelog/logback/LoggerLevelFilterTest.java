@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;

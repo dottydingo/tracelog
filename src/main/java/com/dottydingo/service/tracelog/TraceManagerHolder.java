@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog;
+package com.dottydingo.service.tracelog;
 
 /**
  * Convenience class to allow a configured instance of a TraceManager to be accessed statically

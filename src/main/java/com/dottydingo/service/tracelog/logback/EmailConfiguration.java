@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 /**
  * The configuration to use for Email Traces

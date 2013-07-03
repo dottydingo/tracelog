@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog;
+package com.dottydingo.service.tracelog;
 
 /**
  * Valid Trace types

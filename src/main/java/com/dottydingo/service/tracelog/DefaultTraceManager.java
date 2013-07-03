@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog;
+package com.dottydingo.service.tracelog;
 
 import java.util.HashSet;
 import java.util.Map;

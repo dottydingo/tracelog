@@ -1,13 +1,11 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.turbo.TurboFilter;
-import ch.qos.logback.core.Context;
 import ch.qos.logback.core.spi.FilterReply;
-import com.dottydingo.tracelog.TraceManager;
-import com.dottydingo.tracelog.TraceManagerHolder;
+import com.dottydingo.service.tracelog.TraceManager;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 

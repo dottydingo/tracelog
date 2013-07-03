@@ -1,4 +1,4 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 /**
  * Configuration for a File trace

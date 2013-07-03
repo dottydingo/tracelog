@@ -1,9 +1,9 @@
-package com.dottydingo.tracelog.logback;
+package com.dottydingo.service.tracelog.logback;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.dottydingo.tracelog.Trace;
-import com.dottydingo.tracelog.TraceFactory;
-import com.dottydingo.tracelog.TraceType;
+import com.dottydingo.service.tracelog.Trace;
+import com.dottydingo.service.tracelog.TraceFactory;
+import com.dottydingo.service.tracelog.TraceType;
 
 /**
  * A Logback specific trace factory. Applies the configured trace configurations to the newly created Trace
