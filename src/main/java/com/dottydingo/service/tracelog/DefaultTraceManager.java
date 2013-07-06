@@ -17,16 +17,16 @@ public class DefaultTraceManager<E> implements TraceManager<E>
      * {@inheritDoc}
      */
 	@Override
-	public void startTrace(Trace<E> trace)
+	public void associateTrace(Trace<E> trace)
 	{
-		startTrace(trace, Thread.currentThread());
+		associateTrace(trace, Thread.currentThread());
 	}
 
     /**
      * {@inheritDoc}
      */
 	@Override
-	public void startTrace(Trace<E> trace, Thread thread)
+	public void associateTrace(Trace<E> trace, Thread thread)
 	{
 		threadMap.put(thread,trace);
 	}
@@ -53,16 +53,16 @@ public class DefaultTraceManager<E> implements TraceManager<E>
      * {@inheritDoc}
      */
 	@Override
-	public Trace<E> endTrace()
+	public Trace<E> disassociateTrace()
 	{
-		return endTrace(Thread.currentThread());
+		return disassociateTrace(Thread.currentThread());
 	}
 
     /**
      * {@inheritDoc}
      */
 	@Override
-	public Trace<E> endTrace(Thread thread)
+	public Trace<E> disassociateTrace(Thread thread)
 	{
 		return threadMap.remove(thread);
 	}

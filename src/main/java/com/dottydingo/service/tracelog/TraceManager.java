@@ -9,17 +9,17 @@ import java.util.Set;
 public interface TraceManager<E>
 {
 	/**
-	 * Start a trace on the current thread using the supplied trace
+	 * Associate the supplied trace to the current thread
 	 * @param trace The trace
 	 */
-	public void startTrace(Trace<E> trace);
+	public void associateTrace(Trace<E> trace);
 
 	/**
-	 * Start a trace on the supplied thread using the supplied trace
+	 * Associate the supplied trace on the supplied thread
 	 * @param trace The trace
 	 * @param thread The thread to associate the trace to
 	 */
-	public void startTrace(Trace<E> trace, Thread thread);
+	public void associateTrace(Trace<E> trace, Thread thread);
 
 
 	/**
@@ -36,17 +36,17 @@ public interface TraceManager<E>
 	public Trace<E> getTrace(Thread thread);
 
 	/**
-	 * End the trace associated with the current tread.
+	 * Disassociate the trace from the current tread.
 	 * @return The current trace or null if no trace is associated with the current thread
 	 */
-	public Trace<E> endTrace();
+	public Trace<E> disassociateTrace();
 
 	/**
-	 * End the trace associated with the supplied thread
+	 * Disassociate the trace associated with the supplied thread
 	 * @param thread The thread
 	 * @return The trace or null if no trace is associated with the supplied thread
 	 */
-	public Trace<E> endTrace(Thread thread);
+	public Trace<E> disassociateTrace(Thread thread);
 
 	/**
 	 * Return the packages to trace
